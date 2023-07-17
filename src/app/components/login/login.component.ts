@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,12 +21,15 @@ export class LoginComponent {
   ) {}
   
   ngOnInit() {
+    this.auth.setShowToolbar(false);
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
-  
+  ngOnDestory():void {
+     this.auth.setShowToolbar(true);
+  }
   hideShowPass() {
     this.isText = !this.isText;
     this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
@@ -35,16 +39,24 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      this.validateAllFormFields(this.loginForm);
-      alert("Your form valid");
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
-              console.log(res.message);
+              alert(res.message);
       },
       error: (err) => {
       
-           console.log(err);
+           alert(err);
         },});
+      // this.validateAllFormFields(this.loginForm);
+      // alert("Your form valid");
+      // this.auth.login(this.loginForm.value).subscribe({
+      //   next: (res) => {
+      //         console.log(res.message);
+      // },
+      // error: (err) => {
+      
+      //      console.log(err);
+      //   },});
       // this.auth.signIn(this.loginForm.value).subscribe({
       //   next: (res) => {
       //     console.log(res.message);

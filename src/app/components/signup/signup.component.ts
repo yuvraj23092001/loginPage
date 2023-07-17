@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,18 +12,22 @@ export class SignupComponent {
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
   signUpForm!: FormGroup;
-  constructor(private fb : FormBuilder){}
+  constructor(private fb : FormBuilder,private auth : AuthService){}
   ngOnInit() {
+    this.auth.setShowToolbar(false);
     this.signUpForm = this.fb.group({
       email:['', Validators.required],
-      firstname:['', Validators.required],
-      secondname:['', Validators.required],
+      Fname:['', Validators.required],
+      Lname:['', Validators.required],
       contact:['', Validators.required],
       dob:['', Validators.required],
       password:['', Validators.required]
     })
   }
-
+  
+  ngOnDestory():void {
+    this.auth.setShowToolbar(true);
+ }
   private validateAllFormFields(formGroup: FormGroup){
     Object.keys(formGroup.controls).forEach(field =>{
       const control = formGroup.get(field);
@@ -41,6 +46,15 @@ export class SignupComponent {
       console.log(this.signUpForm.value);
       this.validateAllFormFields(this.signUpForm);
       alert("Your form valid");
+      this.auth.signUp(this.signUpForm.value).subscribe({
+        next: (res =>{
+           alert(res.message)
+
+        })
+        ,error:(err =>{
+          alert(err?.error.message)
+        })
+      })
       // this.auth.signIn(this.loginForm.value).subscribe({
       //   next: (res) => {
       //     console.log(res.message);
