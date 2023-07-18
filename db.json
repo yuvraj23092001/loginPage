@@ -18,40 +18,31 @@
   },
   "teacher": [
     {
-      "firstName": "",
-      "lastName": "",
-      "email": "",
-      "dob": "",
-      "salary": "",
-      "department": "",
-      "id": 1
+      "firstName": "yuvraj",
+      "lastName": "khanna",
+      "email": "abc@gmail.com",
+      "dob": "2023-07-03T18:30:00.000Z",
+      "salary": "12000",
+      "department": "Cse",
+      "id": 5
     },
     {
-      "firstName": "",
-      "lastName": "",
-      "email": "",
-      "dob": "",
-      "salary": "",
-      "department": "",
-      "id": 2
+      "firstName": "yuvraj",
+      "lastName": "khanna",
+      "email": "adsf",
+      "dob": "2023-07-02T18:30:00.000Z",
+      "salary": "12",
+      "department": "Cse",
+      "id": 6
     },
     {
-      "firstName": "",
-      "lastName": "",
-      "email": "",
-      "dob": "",
-      "salary": "",
-      "department": "",
-      "id": 3
-    },
-    {
-      "firstName": "",
-      "lastName": "",
-      "email": "",
-      "dob": "",
-      "salary": "",
-      "department": "",
-      "id": 4
+      "firstName": "Yuvraj",
+      "lastName": "Khanna",
+      "email": "ac@gmail.com",
+      "dob": "2023-07-20T18:30:00.000Z",
+      "salary": "23444",
+      "department": "IT",
+      "id": 7
     }
   ]
 }

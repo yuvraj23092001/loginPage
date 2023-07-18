@@ -18,7 +18,7 @@ export class AddTeacherComponent {
   constructor(
     private _fb: FormBuilder,
     private _teacherService: TeacherService,
-    private _dialogRef: DialogRef<AddTeacherComponent>,
+    private _dialogRef: MatDialogRef<AddTeacherComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     // private _coreService: CoreService
   ) {
@@ -37,7 +37,7 @@ export class AddTeacherComponent {
        this._teacherService.addTeacher(this.teacherForm.value).subscribe({
         next: (val:any) =>{
           alert("teacher Added");
-          this._dialogRef.close();
+          this._dialogRef.close(true);
         },
         error: (err:any) =>{
          console.error(err);

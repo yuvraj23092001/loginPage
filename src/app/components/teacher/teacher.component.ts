@@ -14,7 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrls: ['./teacher.component.scss']
 })
 export class TeacherComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'firstName', 'secondName' , 'salary' ,'progress', 'fruit'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName' , 'email','salary' , 'dob', 'department', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,16 +27,43 @@ export class TeacherComponent implements OnInit {
   }
   
   addTeacherForm(){
+    const dialogRef = 
     this._dialog.open(AddTeacherComponent);
+    dialogRef.afterClosed().subscribe({next: (val) =>{
+       if(val){ // if we are recieving a value then we are returning true 
+          this.getAllTeachers();
+       }
+    }})
   }
 
   getAllTeachers(){
     this._teacherService.getAllTeachers().subscribe({
        next:(res :any) => {
-          console.log(res);
+          this.dataSource = new MatTableDataSource(res);
        },
        error: console.log,
     })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  deleteTeacher(id:number){
+     this._teacherService.deleteTeacher(id).subscribe({
+      next:(res) =>{
+         alert("delete teacher");
+         this.getAllTeachers();
+      },
+      error:(err) =>{
+
+      }
+     })
   }
 
 }

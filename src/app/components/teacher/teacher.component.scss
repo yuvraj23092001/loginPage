@@ -1,6 +1,6 @@
 .container{
     text-align: center;
-    margin: 10px;
+    margin: 10px auto;
 }
 
 table {
@@ -13,5 +13,10 @@ table {
   }
   
   td, th {
-    width: 25%;
+    width: auto;
   }
+
+.main-body{
+    max-width: 1240px;
+    margin: 0 auto;
+}
