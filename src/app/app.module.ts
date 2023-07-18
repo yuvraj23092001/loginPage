@@ -20,6 +20,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddTeacherComponent } from './components/teacher/add-teacher/add-teacher.component'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,13 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDialogModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatInputModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

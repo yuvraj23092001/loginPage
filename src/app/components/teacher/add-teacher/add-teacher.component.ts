@@ -1,7 +1,9 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
+import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-add-teacher',
@@ -9,66 +11,38 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./add-teacher.component.scss']
 })
 export class AddTeacherComponent {
-  empForm: FormGroup;
+   teacherForm: FormGroup;
 
-  education: string[] = [
-    'Matric',
-    'Diploma',
-    'Intermediate',
-    'Graduate',
-    'Post Graduate',
-  ];
+  
 
   constructor(
     private _fb: FormBuilder,
-    private _empService: AuthService,
-    private _dialogRef: MatDialogRef<AddTeacherComponent>,
+    private _teacherService: TeacherService,
+    private _dialogRef: DialogRef<AddTeacherComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     // private _coreService: CoreService
   ) {
-    this.empForm = this._fb.group({
-      firstName: '',
-      lastName: '',
-      email: '',
-      dob: '',
-      gender: '',
-      education: '',
-      company: '',
-      experience: '',
-      package: '',
-    });
-  }
+    this.teacherForm = this._fb.group({
+      firstName:'',
+      lastName:'',
+      email:'',
+      dob:'',
+      salary:'',
+      department:''
+    })
+  } 
 
-  ngOnInit(): void {
-    this.empForm.patchValue(this.data);
-  }
-
-  onFormSubmit() {
-    if (this.empForm.valid) {
-      // if (this.data) {
-      //   this._empService
-      //     .updateEmployee(this.data.id, this.empForm.value)
-      //     .subscribe({
-      //       next: (val: any) => {
-      //         this._coreService.openSnackBar('Employee detail updated!');
-      //         this._dialogRef.close(true);
-      //       },
-      //       error: (err: any) => {
-      //         console.error(err);
-      //       },
-      //     });
-      } else {
-    //     this._empService.addEmployee(this.empForm.value).subscribe({
-    //       next: (val: any) => {
-    //         this._coreService.openSnackBar('Employee added successfully');
-    //         this._dialogRef.close(true);
-    //       },
-    //       error: (err: any) => {
-    //         console.error(err);
-    //       },
-    //     });
-    //   }
-    // }
-  }
+  onFormSubmit(){
+    if(this.teacherForm.valid){
+       this._teacherService.addTeacher(this.teacherForm.value).subscribe({
+        next: (val:any) =>{
+          alert("teacher Added");
+          this._dialogRef.close();
+        },
+        error: (err:any) =>{
+         console.error(err);
+        }
+       })
+    }
   }
 }

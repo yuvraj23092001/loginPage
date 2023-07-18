@@ -1,0 +1,57 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "teacher": [
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "dob": "",
+      "salary": "",
+      "department": "",
+      "id": 1
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "dob": "",
+      "salary": "",
+      "department": "",
+      "id": 2
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "dob": "",
+      "salary": "",
+      "department": "",
+      "id": 3
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "dob": "",
+      "salary": "",
+      "department": "",
+      "id": 4
+    }
+  ]
+}
